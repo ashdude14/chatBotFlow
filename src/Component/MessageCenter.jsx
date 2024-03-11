@@ -2,7 +2,7 @@
 // writing a text on message in enabled for specific selected  Messagenode 
 // I am using tailwind-css for styling and i am giving div width full and height full also the border to black
 // It's tricky to give different state two state of component in this will look like 
-// 1. Message icon and 2. Edit Message node but not same together 
+// 1. Message icon and 2. Edit MessageNode but not same together 
 
 
 

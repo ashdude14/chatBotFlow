@@ -52,7 +52,7 @@ In the project directory, you can run:
 
 Clone this project using
 
-### `git clone https://www.github.com/ashdude/chatBotflow.git`
+### `git clone https://www.github.com/ashdude/chatBotFlow.git`
 
 Install all dependencies using
 

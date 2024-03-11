@@ -4,16 +4,17 @@ import Header from "./Component/Header";
 
 const App = () => {
   return (
-    <>
-      <Header />
-
-      <div className="flex-1 flex">
+    <div className="h-screen flex flex-col">
+      <div className="h-[10%]">
+        <Header />
+      </div>
+      <div className="flex-1 flex ">
         <AddNode />
-        <div className="w-[20%] h-screen  ">
+        <div className="w-1/5 h-full">
           <MessageCenter />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

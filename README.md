@@ -1,12 +1,12 @@
 # BiteSpeed Frontend Task: Chatbot flow builder
  
 
-We’ll build a simple Chatbot flow builder using React and try to make the code extensible to easily add new features. 
+A simple Chatbot flow builder using React and the code is  extensible to easily add new features. 
 A chatbot flow is built by connecting multiple messages together to decide the order of execution.
 
 ## Deployment
 
-### use this live link for project demo: 
+### Use this live link for project demo: 
 
 
 ## UI 

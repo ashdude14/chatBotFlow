@@ -15,7 +15,7 @@ A chatbot flow is built by connecting multiple messages together to decide the o
 
 ## Library/Tool used 
 
-[React](http://reactjs.org) , [React Flow](https://reactflow.dev/) and [Tailwind-css](https://tailwindcss.com/).
+[React](http://reactjs.org) , [React Flow](https://reactflow.dev/), [React_icons](https://react-icons.github.io/react-icons/) and [Tailwind-css](https://tailwindcss.com/).
 
 
 

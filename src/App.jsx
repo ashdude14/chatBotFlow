@@ -1,60 +1,109 @@
-import MessageCenter from "./Component/MessageCenter";
-import Header from "./Component/Header";
-import NewNode from "./Component/NewNode";
-import { useCallback } from "react";
+import { useState, useRef, useCallback, useMemo} from "react";
 import ReactFlow, {
-  MiniMap,
-  Controls,
+  ReactFlowProvider,
+  addEdge,
   useNodesState,
   useEdgesState,
-  addEdge,
+  Controls,
 } from "reactflow";
-
 import "reactflow/dist/style.css";
+import Sidebar from "./Component/Sidebar";
+import Header from "./Component/Header";
+import newNode from "./Component/NewNode"
 
-const initialNodes = [
-  { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
-  { id: "2", position: { x: 0, y: 100 }, data: { label: "2" } },
-];
+let id = 0;
+const getId = () => `dndnode_${id++}`;
 
-const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 
-const App = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+function App()  {
+  const reactFlowWrapper = useRef(null);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
+
+
+
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
+
+
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+      const type = event.dataTransfer.getData("application/reactflow");
+      // check if the dropped element is valid
+      if (typeof type === "undefined" || !type) {
+        return;
+      }
+
+      // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
+      // and you don't need to subtract the reactFlowBounds.left/top anymore
+      // details: https://reactflow.dev/whats-new/2023-11-10
+      const position = reactFlowInstance.screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+      const newNode = {
+        id: getId(),
+        type: 'node',
+        position,
+        data: { head: 'Send Message', value: `text message ${id}` },
+      };
+
+      setNodes((nds) => nds.concat(newNode));
+    },
+    [ reactFlowInstance, setNodes]
+  );
+
+
+  const messageNode = useMemo(
+    () => ({
+      node: newNode,
+    }),
+    []
+  )
+
   return (
     <div className="h-screen flex flex-col">
-      <div className="h-[10%]">
-        <Header />
-      </div>
-      <div className="flex-1 flex ">
-        {/* 
-           <NewNode   data={{ type:'Send Message', value:`text message ` }}/>
-        */}
-
-        {/** here want to add custom node <NewNode>*/}
-      {/* <NewNode data={{ type: 'Send Message', value: `text message ` }} /> */}
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-        >
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
+        <ReactFlowProvider>
+       <div className="h-[10%]">
+       <Header/>
+       </div>
+   
+        <div className="flex-1 flex" ref={reactFlowWrapper}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onInit={setReactFlowInstance}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            nodeTypes={messageNode}   //can define custom nodetype here i am uisng message node 
+            fitView 
+          >
+            <Controls />
+          </ReactFlow>
+     
         <div className="w-1/5 h-full">
-          <MessageCenter />
+        <Sidebar />      
+       </div>
+
         </div>
-      </div>
+      </ReactFlowProvider>
     </div>
   );
-};
+}
 
 export default App;

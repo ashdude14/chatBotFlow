@@ -27,7 +27,7 @@ A chatbot flow is built by connecting multiple messages together to decide the o
     2. Right now there is only Message Node, but we’d be adding more types of Nodes in the future so make this section extensible 
 3. **Edge**
     1. Connects two Nodes together
-    ![save-button](./public/node4.png)
+    ![save-button](./public/node1.png)
 
 4. **Source Handle**
     1. Source of a connecting edge 

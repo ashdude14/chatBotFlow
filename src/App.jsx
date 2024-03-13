@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef, useCallback, useMemo } from "react";
 import ReactFlow, {
   ReactFlowProvider,
@@ -26,14 +27,21 @@ function App() {
   const [nodeSelected, setNodeSelected] = useState(false);
   const [changeNode, setChangeNode] = useState(null);
   const [red, setRed] = useState(true);
+  const [show, setShow] = useState(false);
 
   // determine when a node is selected by user
 
-  const update = useCallback((event, node) => {
-    // console.log(event, node);
-    setChangeNode(node);
-    setNodeSelected(true);
-  }, []);
+  const update = useCallback(
+    (event, node) => {
+      // console.log(event, node);
+      setChangeNode(node);
+      setNodeSelected(true);
+      setShow((pre) => {
+        setShow(!pre);
+      });
+    },
+    [setShow]
+  );
 
   const onConnect = useCallback(
     (params) => {
@@ -49,9 +57,9 @@ function App() {
       }
 
       // single ended arrow for connecting edges
-      setEdges(
-        (eds) => addEdge({ ...params, markerEnd: { type: 'arrowclosed' } }, eds) 
-        );
+      setEdges((eds) =>
+        addEdge({ ...params, markerEnd: { type: "arrowclosed" } }, eds)
+      );
     },
     [setEdges]
   );
@@ -164,10 +172,9 @@ function App() {
             <Controls />
           </ReactFlow>
 
-          <div className="w-1/5 h-full">
-            <Sidebar />
-            {nodeSelected && (
-              <div className="rightbar">
+          <div className="w-1/5 h-full relative">
+            {show && (
+              <div className="absolute text-black/90 bg-blue-100 w-full">
                 <UpdateNode
                   selectedNode={changeNode}
                   setNodeSelected={setNodeSelected}
@@ -175,6 +182,7 @@ function App() {
                 />
               </div>
             )}
+            <Sidebar show={show} />
           </div>
         </div>
       </ReactFlowProvider>

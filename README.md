@@ -9,9 +9,6 @@ A chatbot flow is built by connecting multiple messages together to decide the o
 ### Use this live link for project demo: 
 
 
-## UI 
-
-![Demo](./public/node.jpeg)
 
 ## Library/Tool used 
 
@@ -30,21 +27,25 @@ A chatbot flow is built by connecting multiple messages together to decide the o
     2. Right now there is only Message Node, but we’d be adding more types of Nodes in the future so make this section extensible 
 3. **Edge**
     1. Connects two Nodes together
+    ![save-button](./public/node4.png)
+
 4. **Source Handle**
     1. Source of a connecting edge 
     2. Can only have **one edge** originating from a source handle
 5. **Target Handle** 
     1. Target of a connecting edge
     2. Can have **more than one edge** connecting to a target handle 
+    ![save-button](./public/node2.png)
+
 6. **Settings Panel**
-    ![setting](./public/setting-panel.jpeg)
+    ![setting](./public/node3.png)
     1. Settings Panel will replace the Nodes Panel when a Node is selected
     2. It has a text field to edit text of the selected Text Node
 7. **Save Button**
 
     1. Button to save the flow 
     2. **Save button press will show an error if there are more than one Nodes and more than one Node has empty target handles**
-![save-button](./public/save.png)
+![save-button](./public/node4.png)
 
 ## Scripts to run locally and Deployment
 
@@ -75,4 +76,5 @@ To build this project
 ## Refrences
 
 [ReactFlow Drag and Drop](https://reactflow.dev/examples/interaction/drag-and-drop)
+
 [React Flow Documentation](https://reactflow.dev/)

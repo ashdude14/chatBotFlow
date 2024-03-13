@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // I am using flex for icon and message label position setup here flex by colomn will set icon and label above and just below
 // and further center position will set using item-center and justify-center
 // I am assigning the margin bottom of 2em= 8px for icon
@@ -13,7 +14,7 @@
 
 import { BiMessageRoundedDetail } from "react-icons/bi";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   // function to handle onDragStart
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
@@ -24,11 +25,11 @@ const Sidebar = () => {
     <div className=" w-full h-[100%] border border-black">
       <div className="w-[40%]">
         <div
-          className="h-full w-full border border-black flex flex-col justify-center items-center "
+          className={`h-full w-full border border-black flex flex-col justify-center items-center  ${props.show? `hidden` : `block`}`}
           onDragStart={(event) => onDragStart(event, "default")}
           draggable
         >
-          <div className="mb-2">
+          <div className={`mb-2`}>
             <BiMessageRoundedDetail className="text-3xl" />
           </div>
           <label className="text-sm">Message</label>

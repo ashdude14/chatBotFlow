@@ -148,7 +148,7 @@ function App() {
               onClick={() => {
                 setTimeout(() => {
                   legalCheck() ? setRed(true) : setRed(false);
-                }, 3000);
+                }, 1000);
               }}
             >
               Save Changes

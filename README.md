@@ -12,7 +12,7 @@ A chatbot flow is built by connecting multiple messages together to decide the o
 
 ## Library/Tool used 
 
-[React](http://reactjs.org) , [React Flow](https://reactflow.dev/), [React_icons](https://react-icons.github.io/react-icons/) and [Tailwind-css](https://tailwindcss.com/).
+[React](http://reactjs.org) , [React Flow](https://reactflow.dev/), [React-icons](https://react-icons.github.io/react-icons/) and [Tailwind-css](https://tailwindcss.com/).
 
 
 
@@ -46,6 +46,15 @@ A chatbot flow is built by connecting multiple messages together to decide the o
     1. Button to save the flow 
     2. **Save button press will show an error if there are more than one Nodes and more than one Node has empty target handles**
 ![save-button](./public/node4.png)
+
+## Working with Chatbot Flow builder
+
+1. Drag and Drop the message icon to generate new message node.
+2. Click to the genrated node to write your text.
+3. Again click on same node to save the text.
+4. Save the Flow.
+
+
 
 ## Scripts to run locally and Deployment
 

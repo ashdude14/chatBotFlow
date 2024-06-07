@@ -1,4 +1,4 @@
-# BiteSpeed Frontend Task: Chatbot flow builder
+#  Chatbot flow builder [Full Stack Task]
  
 
 A simple Chatbot flow builder using React and the code is  extensible to easily add new features. 
